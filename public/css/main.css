@@ -7,9 +7,10 @@
 
 html, body {
     display: flex;
-    justify-content: center;
-    align-items: center;
     height: 100%;
+    margin: 0 auto;
+    flex-direction: column;
+    justify-content: center;
 }
 
 .microwave-container{
@@ -63,6 +64,7 @@ html, body {
     background-image: url(https://i.ya-webdesign.com/images/comic-background-dots-png-5.png);
     background-repeat: no-repeat;
     background-size: cover;
+    overflow: hidden;
 }
 
 .microwave-container .microwave .control-panel-container {
@@ -126,4 +128,19 @@ html, body {
 
 .control-panel .controls .control-row .button span.smallText {
     font-size:6px;
+}
+
+.light {
+    height: 0px;
+    width: 80%;
+    box-shadow: 0px 42px 92px 14px #ffd400;
+    z-index: -1;
+    display: none;
+}
+
+.inside-light {
+    height: 0px;
+    width: 100%;
+    box-shadow: 0px 152px 1004px 84px #ffd40082;
+    display: none;
 }
