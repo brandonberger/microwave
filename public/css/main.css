@@ -1,0 +1,129 @@
+@font-face {
+    font-family: Digital;
+    src: url(../fonts/digital.ttf);
+    font-style: normal;
+    font-weight: 500;
+}
+
+html, body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+}
+
+.microwave-container{
+    width: 1200px;
+    height: 550px;
+}
+
+.microwave-container .microwave {
+    width: 100%;
+    height: 100%;
+    background-color: grey;
+    display: flex;
+}
+
+.microwave-container .microwave .door-container {
+    width: 80%;
+    height: 100%;
+}
+
+.microwave-container .microwave .door-container .door {
+    height: 100%;
+    width: 100%;
+    border-right: solid 7px black;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    position: relative;
+}
+
+.microwave-container .microwave .door-container .door .handle {
+    position: absolute;
+    height: 90%;
+    width: 50px;
+    background-color: silver;
+    right: 2.5%;
+}
+
+.microwave-container .microwave .door-container .door .window-container {
+    height: 80%;
+    width: 95%;
+    background-color:#000000d9;
+    display: flex;
+    align-items: center;
+}
+
+.microwave-container .microwave .door-container .door .window-container .window {
+    height: 80%;
+    width: 80%;
+    background-color: silver;
+    margin-left: 5%;
+    background-image: url(https://i.ya-webdesign.com/images/comic-background-dots-png-5.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.microwave-container .microwave .control-panel-container {
+    width: 20%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+}
+
+.microwave-container .microwave .control-panel-container .control-panel {
+    background-color: #000000d9;
+    height: 80%;
+    width: 90%;
+}
+
+.microwave-container .microwave .control-panel-container .control-panel .clock {
+    height: 40px;
+    width: 100%;
+    text-align: center;
+    color: green;
+    font-family: Digital;
+    font-size: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.control-panel .controls {
+    width: 85%;
+    height: 88%;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.control-panel .controls .control-row {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.control-panel .controls .control-row.no-border .button{
+    border: none;
+}
+
+.control-panel .controls .control-row .button {
+    width: 28%;
+    font-size:11px;
+    text-align: center;
+    font-family: sans-serif;
+    height: 30px;
+    color: white;
+    border: solid 1px white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+
+.control-panel .controls .control-row .button span.smallText {
+    font-size:6px;
+}
