@@ -23,6 +23,7 @@ html, body {
     height: 100%;
     background-color: grey;
     display: flex;
+    border-radius: 10px;
 }
 
 .microwave-container .microwave .door-container {

@@ -20,109 +20,100 @@ setInterval(setClock, 30000);
 
 $('.button').on('click', function() {
     btnFunc = $(this).data('function');
-
     switch (btnFunc) {
         case 'popcorn':
-            power();
-            setTimer('120');
+            start('120');
             break;
         case 'stop':
-            if (currentDuration > 0 && paused === false) {
-                paused = true;
-                clearInterval(countDown);
-            } else if ((currentDuration > 0 && paused) || currentDuration <= 0) {
-                power(false);
-                paused = false;
-                currentDuration = 0;
-                cookTime = '';
-                clearInterval(countDown);
-                setClock();
-            }
-            toggleInsideLight(false);
+            stop();
             break;
         case 'cook':
-            readyForCookTime = true;
-            clock.textContent = '00:00';
+            if (!readyForCookTime && !powerOn) {
+                readyForCookTime = true;
+                clock.textContent = '00:00';
+            }
             break;
         case 'one':
-            if (readyForCookTime) {
-                setCookTime(1);
-            }
+            setCookTime(1);
             break;
         case 'two':
-            if (readyForCookTime) {
-                setCookTime(2);
-            }
+            setCookTime(2);
             break;
         case 'three':
-            if (readyForCookTime) {
-                setCookTime(3);
-            }
+            setCookTime(3);
             break;
         case 'four':
-            if (readyForCookTime) {
-                setCookTime(4);
-            }
+            setCookTime(4);
             break;
         case 'five':
-                if (readyForCookTime) {
-                setCookTime(5);
-            }
+            setCookTime(5);
             break;
         case 'six':
-            if (readyForCookTime) {
-                setCookTime(6);
-            }
+            setCookTime(6);
             break;
         case 'seven':
-            if (readyForCookTime) {
-                setCookTime(7);
-            }
+            setCookTime(7);
             break;
         case 'eight':
-            if (readyForCookTime) {
-                setCookTime(8);
-            }
+            setCookTime(8);
             break;
         case 'nine':
-            if (readyForCookTime) {
-                setCookTime(9);
-            }
+            setCookTime(9);
             break;
         case 'zero':
-            if (readyForCookTime) {
-                setCookTime(0);
-            }
+            setCookTime(0);
             break;
         case 'start':
-            if (cookTime && currentDuration <= 0) {
-                emptySpace = 4 - cookTime.length;
-                var zeros = '';
-                for (var i = 0; i < emptySpace; i++) {
-                    zeros += '0';
-                }
-
-                cookTime = zeros+cookTime;
-                    
-                minutes = parseInt(cookTime.slice(0,2) * 60, 10);
-                seconds = parseInt(cookTime.slice(2,4), 10) - 1;
-
-                setTimer(minutes+seconds); 
-                power();
-            } else if (paused && currentDuration > 0) {
-                paused = false;
-                setTimer(currentDuration);
-                power();
-            }
-
-            readyForCookTime = false;
+            start();
             break;
         case 'light':
             toggleLight();
             break;
+        case 'open':
+            break;
     }
 
 });
+
+function start(duration) {
+    if (!duration) {
+        if (cookTime && currentDuration <= 0) {
+            emptySpace = 4 - cookTime.length;
+            var zeros = '';
+            for (var i = 0; i < emptySpace; i++) {
+                zeros += '0';
+            }
+            cookTime = zeros+cookTime;
+            minutes = parseInt(cookTime.slice(0,2) * 60, 10);
+            seconds = parseInt(cookTime.slice(2,4), 10) - 1;
+            duration = minutes + seconds;
+        } else if (paused && currentDuration > 0) {
+            paused = false;
+            duration = currentDuration;
+        }
+    }
+
+    if (duration) {
+        power();
+        setTimer(duration); 
+        readyForCookTime = false;
+    }
+}
+
+function stop() {
+    if (currentDuration > 0 && paused === false) {
+        paused = true;
+        clearInterval(countDown);
+    } else if ((currentDuration > 0 && paused) || currentDuration <= 0) {
+        power(false);
+        paused = false;
+        currentDuration = 0;
+        cookTime = '';
+        clearInterval(countDown);
+        setClock();
+    }
+    toggleInsideLight(false);
+}
 
 
 function toggleLight() {
@@ -151,6 +142,15 @@ function power(status = true) {
 }
 
 function setCookTime(duration = null) {
+
+    if (readyForCookTime) {
+        duration = duration;
+    } else {
+        if (!paused) {
+            start(duration * 60);
+        }
+        return;
+    }
 
     for (var i = 4 - 1; i > 0; i--) {
         cookTime[i] = duration;
