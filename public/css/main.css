@@ -47,6 +47,7 @@ html, body {
     width: 50px;
     background-color: silver;
     right: 2.5%;
+    cursor: pointer;
 }
 
 .microwave-container .microwave .door-container .door .window-container {

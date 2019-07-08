@@ -70,6 +70,7 @@ $('.button').on('click', function() {
             toggleLight();
             break;
         case 'open':
+            stop();
             break;
     }
 
